@@ -9,16 +9,24 @@ namespace CharPad
         private readonly LinkedList<Action<int>> _callbacks;
         private int? _lastValue = null;
 
+
+        public GamepadKey Key { get; }
+        public Direction Direction { get; }
         public int? Value => _lastValue;
         public bool Performed => _lastValue.HasValue ? _valuePredicate(_lastValue.Value) : false;
 
-        public ControlPoint(JoystickOffset offset) : this(offset, x => true) { }
-        public ControlPoint(JoystickOffset offset, Predicate<int> value)
+
+        public ControlPoint(GamepadKey key, JoystickOffset offset, Predicate<int> value) : this(key, Direction.None, offset, value) { }
+        public ControlPoint(GamepadKey key, Direction direction, JoystickOffset offset, Predicate<int> value)
         {
+            Key = key;
+            Direction = direction;
+
             _offset = offset;
             _valuePredicate = value;
             _callbacks = new LinkedList<Action<int>>();
         }
+
 
         public void Update(JoystickUpdate update)
         {
@@ -46,5 +54,7 @@ namespace CharPad
         }
 
         public void Dispose() => _callbacks.Clear();
+
+        public override string ToString() => Key.ToString() + (Direction == Direction.None ? string.Empty : $" {Direction}");
     }
 }
