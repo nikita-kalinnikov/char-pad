@@ -24,21 +24,21 @@ var bindings = new Bindings();
 bindings.Start.Subscribe(() => Console.WriteLine($"Start button pressed"));
 bindings.Back.Subscribe(() => Console.WriteLine($"Back button pressed"));
 
-bindings.Left_Trigger.Subscribe(() => Console.WriteLine($"Left Trigger pressed"));
-bindings.Left_Stick.Subscribe(() => Console.WriteLine($"Left Stick pressed"));
-bindings.Left_Stick_Up.Subscribe(() => Console.WriteLine($"Left Stick up"));
-bindings.Left_Stick_Down.Subscribe(() => Console.WriteLine($"Left Stick down"));
-bindings.Left_Stick_Left.Subscribe(() => Console.WriteLine($"Left Stick left"));
-bindings.Left_Stick_Right.Subscribe(() => Console.WriteLine($"Left Stick right"));
-bindings.Left_Bumper.Subscribe(() => Console.WriteLine($"Left Bumper pressed"));
+bindings.LeftTrigger.Subscribe(() => Console.WriteLine($"Left Trigger pressed"));
+bindings.LeftStick.Subscribe(() => Console.WriteLine($"Left Stick pressed"));
+bindings.LeftStick_Up.Subscribe(() => Console.WriteLine($"Left Stick up"));
+bindings.LeftStick_Down.Subscribe(() => Console.WriteLine($"Left Stick down"));
+bindings.LeftStick_Left.Subscribe(() => Console.WriteLine($"Left Stick left"));
+bindings.LeftStick_Right.Subscribe(() => Console.WriteLine($"Left Stick right"));
+bindings.LeftBumper.Subscribe(() => Console.WriteLine($"Left Bumper pressed"));
 
-bindings.Right_Trigger.Subscribe(() => Console.WriteLine($"Right Trigger pressed"));
-bindings.Right_Stick.Subscribe(() => Console.WriteLine($"Right Stick pressed"));
-bindings.Right_Stick_Up.Subscribe(() => Console.WriteLine($"Right Stick up"));
-bindings.Right_Stick_Down.Subscribe(() => Console.WriteLine($"Right Stick down"));
-bindings.Right_Stick_Left.Subscribe(() => Console.WriteLine($"Right Stick left"));
-bindings.Right_Stick_Right.Subscribe(() => Console.WriteLine($"Right Stick right"));
-bindings.Right_Bumper.Subscribe(() => Console.WriteLine($"Right Bumper pressed"));
+bindings.RightTrigger.Subscribe(() => Console.WriteLine($"Right Trigger pressed"));
+bindings.RightStick.Subscribe(() => Console.WriteLine($"Right Stick pressed"));
+bindings.RightStick_Up.Subscribe(() => Console.WriteLine($"Right Stick up"));
+bindings.RightStick_Down.Subscribe(() => Console.WriteLine($"Right Stick down"));
+bindings.RightStick_Left.Subscribe(() => Console.WriteLine($"Right Stick left"));
+bindings.RightStick_Right.Subscribe(() => Console.WriteLine($"Right Stick right"));
+bindings.RightBumper.Subscribe(() => Console.WriteLine($"Right Bumper pressed"));
 
 bindings.X.Subscribe(() => Console.WriteLine($"X button pressed"));
 bindings.Y.Subscribe(() => Console.WriteLine($"Y button pressed"));
