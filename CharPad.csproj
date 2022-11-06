@@ -15,4 +15,10 @@
     <PackageReference Include="SharpDX.DirectInput" Version="4.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="input_map.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
