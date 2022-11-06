@@ -6,34 +6,31 @@ namespace CharPad
     {
         private readonly JoystickOffset _offset;
         private readonly Predicate<int> _valuePredicate;
-        private readonly LinkedList<Action> _callbacks;
+        private readonly LinkedList<Action<int>> _callbacks;
 
         public ControlPoint(JoystickOffset offset) : this(offset, x => true) { }
         public ControlPoint(JoystickOffset offset, Predicate<int> value)
         {
             _offset = offset;
             _valuePredicate = value;
-            _callbacks = new LinkedList<Action>();
+            _callbacks = new LinkedList<Action<int>>();
         }
 
         public void Update(JoystickUpdate update)
         {
-            if (update.Offset != _offset) return;
+            if (_offset != update.Offset) return;
             if (_valuePredicate(update.Value) is false) return;
 
             var node = _callbacks.First;
             while (node != null)
             {
-                node.Value?.Invoke();
+                node.Value?.Invoke(update.Value);
                 node = node.Next;
             }
         }
 
-        public ControlPoint Subscribe(Action onNext)
-        {
-            _callbacks.AddLast(onNext);
-            return this;
-        }
+        public void Subscribe(Action onNext) => Subscribe(_ => onNext?.Invoke());
+        public void Subscribe(Action<int> onNext) => _callbacks.AddLast(onNext);
 
         public ControlPoint AddTo(List<ControlPoint> list)
         {
