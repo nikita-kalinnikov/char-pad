@@ -50,6 +50,9 @@ bindings.DPad_Down.Subscribe(() => Console.WriteLine($"DPad Down pressed"));
 bindings.DPad_Left.Subscribe(() => Console.WriteLine($"DPad Left pressed"));
 bindings.DPad_Right.Subscribe(() => Console.WriteLine($"DPad Right pressed"));
 
+var combination = new Combination(bindings.LeftTrigger, bindings.A);
+
+combination.Subscribe(() => Console.WriteLine($"Combination performed: {combination}"));
 
 while (true)
 {
