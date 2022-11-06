@@ -7,6 +7,9 @@ namespace CharPad
         private readonly JoystickOffset _offset;
         private readonly Predicate<int> _valuePredicate;
         private readonly LinkedList<Action<int>> _callbacks;
+        private int _lastValue = int.MinValue;
+
+        public bool Performed => _valuePredicate(_lastValue);
 
         public ControlPoint(JoystickOffset offset) : this(offset, x => true) { }
         public ControlPoint(JoystickOffset offset, Predicate<int> value)
@@ -19,6 +22,9 @@ namespace CharPad
         public void Update(JoystickUpdate update)
         {
             if (_offset != update.Offset) return;
+
+            _lastValue = update.Value;
+
             if (_valuePredicate(update.Value) is false) return;
 
             var node = _callbacks.First;
