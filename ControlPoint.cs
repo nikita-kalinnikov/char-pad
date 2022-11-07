@@ -4,28 +4,27 @@ namespace CharPad
 {
     internal class ControlPoint : IDisposable
     {
+        private readonly InputData _data;
         private readonly JoystickOffset _offset;
         private readonly Predicate<int> _valuePredicate;
         private readonly LinkedList<Action<int>> _callbacks;
         private int? _lastValue = null;
 
-
-        public GamepadKey Key { get; }
-        public Direction Direction { get; }
         public int? Value => _lastValue;
         public bool Performed => _lastValue.HasValue ? _valuePredicate(_lastValue.Value) : false;
 
-
-        public ControlPoint(GamepadKey key, JoystickOffset offset, Predicate<int> value) : this(key, Direction.None, offset, value) { }
-        public ControlPoint(GamepadKey key, Direction direction, JoystickOffset offset, Predicate<int> value)
+        public ControlPoint(GamepadKey key) : this(key, Direction.None) { }
+        public ControlPoint(GamepadKey key, Direction direction) : this(new InputData(key, direction)) { }
+        public ControlPoint(InputData data)
         {
-            Key = key;
-            Direction = direction;
+            var adapterData = KeysAdapter.Get(data);
 
-            _offset = offset;
-            _valuePredicate = value;
+            _data = data;
+            _offset = adapterData.Key;
+            _valuePredicate = x => x == adapterData.Value;
             _callbacks = new LinkedList<Action<int>>();
         }
+
 
 
         public void Update(JoystickUpdate update)
@@ -54,7 +53,6 @@ namespace CharPad
         }
 
         public void Dispose() => _callbacks.Clear();
-
-        public override string ToString() => Key.ToString() + (Direction == Direction.None ? string.Empty : $" {Direction}");
+        public override string ToString() => _data.ToString();
     }
 }

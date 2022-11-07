@@ -1,46 +1,44 @@
-﻿using SharpDX.DirectInput;
+﻿using System.Collections;
+using SharpDX.DirectInput;
 
 namespace CharPad
 {
-    internal class Bindings
+    internal class Bindings : List<ControlPoint>
     {
-        private readonly List<ControlPoint> _list = new List<ControlPoint>();
+        public ControlPoint DPad_Up { get; } = new ControlPoint(GamepadKey.DPad, Direction.Up);
+        public ControlPoint DPad_Down { get; } = new ControlPoint(GamepadKey.DPad, Direction.Down);
+        public ControlPoint DPad_Left { get; } = new ControlPoint(GamepadKey.DPad, Direction.Left);
+        public ControlPoint DPad_Right { get; } = new ControlPoint(GamepadKey.DPad, Direction.Right);
+
+        public ControlPoint LeftTrigger { get; } = new ControlPoint(GamepadKey.LeftTrigger);
+        public ControlPoint LeftBumper { get; } = new ControlPoint(GamepadKey.LeftBumper);
+        public ControlPoint LeftStick { get; } = new ControlPoint(GamepadKey.LeftStick);
+        public ControlPoint LeftStick_Up { get; } = new ControlPoint(GamepadKey.LeftStick, Direction.Up);
+        public ControlPoint LeftStick_Down { get; } = new ControlPoint(GamepadKey.LeftStick, Direction.Down);
+        public ControlPoint LeftStick_Left { get; } = new ControlPoint(GamepadKey.LeftStick, Direction.Left);
+        public ControlPoint LeftStick_Right { get; } = new ControlPoint(GamepadKey.LeftStick, Direction.Right);
 
 
-        public ControlPoint DPad_Up { get; } = new ControlPoint(GamepadKey.DPad, Direction.Up, JoystickOffset.PointOfViewControllers0, x => x == 0);
-        public ControlPoint DPad_Down { get; } = new ControlPoint(GamepadKey.DPad, Direction.Down, JoystickOffset.PointOfViewControllers0, x => x == 18000);
-        public ControlPoint DPad_Left { get; } = new ControlPoint(GamepadKey.DPad, Direction.Left, JoystickOffset.PointOfViewControllers0, x => x == 27000);
-        public ControlPoint DPad_Right { get; } = new ControlPoint(GamepadKey.DPad, Direction.Right, JoystickOffset.PointOfViewControllers0, x => x == 9000);
+        public ControlPoint RightTrigger { get; } = new ControlPoint(GamepadKey.RightTrigger);
+        public ControlPoint RightBumper { get; } = new ControlPoint(GamepadKey.RightBumper);
+        public ControlPoint RightStick { get; } = new ControlPoint(GamepadKey.RightStick);
+        public ControlPoint RightStick_Up { get; } = new ControlPoint(GamepadKey.RightStick, Direction.Up);
+        public ControlPoint RightStick_Down { get; } = new ControlPoint(GamepadKey.RightStick, Direction.Down);
+        public ControlPoint RightStick_Left { get; } = new ControlPoint(GamepadKey.RightStick, Direction.Left);
+        public ControlPoint RightStick_Right { get; } = new ControlPoint(GamepadKey.RightStick, Direction.Right);
 
-        public ControlPoint LeftTrigger { get; } = new ControlPoint(GamepadKey.LeftTrigger, JoystickOffset.Z, x => x == 65408);
-        public ControlPoint LeftBumper { get; } = new ControlPoint(GamepadKey.LeftBumper, JoystickOffset.Buttons4, x => x == 128);
-        public ControlPoint LeftStick { get; } = new ControlPoint(GamepadKey.LeftStick, JoystickOffset.Buttons8, x => x == 128);
-        public ControlPoint LeftStick_Up { get; } = new ControlPoint(GamepadKey.LeftStick, Direction.Up, JoystickOffset.Y, x => x == 0);
-        public ControlPoint LeftStick_Down { get; } = new ControlPoint(GamepadKey.LeftStick, Direction.Down, JoystickOffset.Y, x => x == 65535);
-        public ControlPoint LeftStick_Left { get; } = new ControlPoint(GamepadKey.LeftStick, Direction.Left, JoystickOffset.X, x => x == 0);
-        public ControlPoint LeftStick_Right { get; } = new ControlPoint(GamepadKey.LeftStick, Direction.Right, JoystickOffset.X, x => x == 65535);
+        public ControlPoint Start { get; } = new ControlPoint(GamepadKey.Start);
+        public ControlPoint Back { get; } = new ControlPoint(GamepadKey.Back);
 
-
-        public ControlPoint RightTrigger { get; } = new ControlPoint(GamepadKey.RightTrigger, JoystickOffset.Z, x => x == 128);
-        public ControlPoint RightBumper { get; } = new ControlPoint(GamepadKey.RightBumper, JoystickOffset.Buttons5, x => x == 128);
-        public ControlPoint RightStick { get; } = new ControlPoint(GamepadKey.RightStick, JoystickOffset.Buttons9, x => x == 128);
-        public ControlPoint RightStick_Up { get; } = new ControlPoint(GamepadKey.RightStick, Direction.Up, JoystickOffset.RotationY, x => x == 0);
-        public ControlPoint RightStick_Down { get; } = new ControlPoint(GamepadKey.RightStick, Direction.Down, JoystickOffset.RotationY, x => x == 65535);
-        public ControlPoint RightStick_Left { get; } = new ControlPoint(GamepadKey.RightStick, Direction.Left, JoystickOffset.RotationX, x => x == 0);
-        public ControlPoint RightStick_Right { get; } = new ControlPoint(GamepadKey.RightStick, Direction.Right, JoystickOffset.RotationX, x => x == 65535);
-
-        public ControlPoint Start { get; } = new ControlPoint(GamepadKey.Start, JoystickOffset.Buttons7, x => x == 128);
-        public ControlPoint Back { get; } = new ControlPoint(GamepadKey.Back, JoystickOffset.Buttons6, x => x == 128);
-
-        public ControlPoint X { get; } = new ControlPoint(GamepadKey.X, JoystickOffset.Buttons2, x => x == 128);
-        public ControlPoint Y { get; } = new ControlPoint(GamepadKey.Y, JoystickOffset.Buttons3, x => x == 128);
-        public ControlPoint B { get; } = new ControlPoint(GamepadKey.B, JoystickOffset.Buttons1, x => x == 128);
-        public ControlPoint A { get; } = new ControlPoint(GamepadKey.A, JoystickOffset.Buttons0, x => x == 128);
+        public ControlPoint X { get; } = new ControlPoint(GamepadKey.X);
+        public ControlPoint Y { get; } = new ControlPoint(GamepadKey.Y);
+        public ControlPoint B { get; } = new ControlPoint(GamepadKey.B);
+        public ControlPoint A { get; } = new ControlPoint(GamepadKey.A);
 
 
-        public Bindings()
+        public Bindings(bool log)
         {
-            void Add(params ControlPoint[] points) => _list.AddRange(points);
+            void Add(params ControlPoint[] points) => base.AddRange(points);
 
             Add(DPad_Up, DPad_Down, DPad_Left, DPad_Right);
 
@@ -52,9 +50,39 @@ namespace CharPad
 
             Add(Start, Back);
             Add(A, B, Y, X);
+
+            if (log is false) return;
+
+            Start.Subscribe(() => Console.WriteLine($"Start button pressed"));
+            Back.Subscribe(() => Console.WriteLine($"Back button pressed"));
+
+            LeftTrigger.Subscribe(() => Console.WriteLine($"Left Trigger pressed"));
+            LeftStick.Subscribe(() => Console.WriteLine($"Left Stick pressed"));
+            LeftStick_Up.Subscribe(() => Console.WriteLine($"Left Stick up"));
+            LeftStick_Down.Subscribe(() => Console.WriteLine($"Left Stick down"));
+            LeftStick_Left.Subscribe(() => Console.WriteLine($"Left Stick left"));
+            LeftStick_Right.Subscribe(() => Console.WriteLine($"Left Stick right"));
+            LeftBumper.Subscribe(() => Console.WriteLine($"Left Bumper pressed"));
+
+            RightTrigger.Subscribe(() => Console.WriteLine($"Right Trigger pressed"));
+            RightStick.Subscribe(() => Console.WriteLine($"Right Stick pressed"));
+            RightStick_Up.Subscribe(() => Console.WriteLine($"Right Stick up"));
+            RightStick_Down.Subscribe(() => Console.WriteLine($"Right Stick down"));
+            RightStick_Left.Subscribe(() => Console.WriteLine($"Right Stick left"));
+            RightStick_Right.Subscribe(() => Console.WriteLine($"Right Stick right"));
+            RightBumper.Subscribe(() => Console.WriteLine($"Right Bumper pressed"));
+
+            X.Subscribe(() => Console.WriteLine($"X button pressed"));
+            Y.Subscribe(() => Console.WriteLine($"Y button pressed"));
+            B.Subscribe(() => Console.WriteLine($"B button pressed"));
+            A.Subscribe(() => Console.WriteLine($"A button pressed"));
+
+            DPad_Up.Subscribe(() => Console.WriteLine($"DPad Up pressed"));
+            DPad_Down.Subscribe(() => Console.WriteLine($"DPad Down pressed"));
+            DPad_Left.Subscribe(() => Console.WriteLine($"DPad Left pressed"));
+            DPad_Right.Subscribe(() => Console.WriteLine($"DPad Right pressed"));
         }
 
-        private void Add(params ControlPoint[] points) => Array.ForEach(points, x => _list.Add(x));
-        public void Update(JoystickUpdate update) => _list.ForEach(x => x.Update(update));
-    }
+        public void Update(JoystickUpdate update) => base.ForEach(x => x.Update(update));
+}
 }
